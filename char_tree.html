@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Tree</title>
+</head>
+
+<body>
+    <svg id="mySvg">
+
+    </svg>
+    <script>
+        var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;//获取屏幕宽度
+        var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;//获取高度
+        var mysvg = document.getElementById("mySvg");
+        mysvg.setAttribute("width", w);
+        mysvg.setAttribute("height", h);
+        var length = 200;//初始长度
+        rate = 0.8;//衰减系数：长短的变化
+        var x0 = w / 2;
+        var y0 = 0;//坐标
+        var count = 7;//层数
+        var str = "春江潮水连海平";
+        var iter = 1;
+        var font_size = 20;
+        function show(x0, y0, length, rate, a, count) {//函数
+            iter++;
+            font_size = count * 4 * (0.5 + Math.random() / 2);
+            var x1 = x0;
+            var y1 = y0;
+            length = str.length * font_size;
+            var x2 = x1 + length * Math.cos(a);//下次出发点的变化:横
+            var y2 = y1 + length * Math.sin(a);//下次出发点的变化:竖
+            //svgline = document.createElement("line");
+            // mysvg.appendChild(svgline);//加入元素
+            cj = document.createElement("text");
+            mysvg.appendChild(cj);
+            // svgline.outerHTML = "<line x1=" + x1 + " y1=" + y1 + " x2=" + x2 + " y2=" + y2 + " style='stroke:rgb(15,166,15);stroke-width:2' />";//画线的数据，颜色
+            cj.outerHTML = "<text x=" + x1 + " y=" + y1 + " font-size=" + font_size + " transform=rotate(" + a * 180 / Math.PI + "," + x1 + "," + y1 + ") fill=rgb(255,100," + iter + ")>" + str + "</text>";
+            var aL = a - Math.PI / 4 * (0.5 + Math.random() / 2);//左树角度
+            var aR = a + Math.PI / 4 * (0.5 + Math.random() / 2);//又树角度
+            if (count > 0) {//递归功能
+                show(x2, y2, length, rate, aL, count - 1);//相对于此时左拐
+                show(x2, y2, length, rate, aR, count - 1);//右拐
+            }
+        }
+        show(x0, y0, str.length * font_size, rate, Math.PI / 2, count);
+
+
+        mysvg.appendChild(nameText);
+    </script>
+</body>
+
+</html>

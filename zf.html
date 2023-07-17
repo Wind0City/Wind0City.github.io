@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+    <svg id="mySVG" width="800" height="600" version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>
+    <script>
+        var x = 75, y = 500;//定义变量x,y
+        var mysvg = document.getElementById("mySVG");//实例化
+        var svgrec = new Array();//定义新的数组
+        var txt = new Array();
+        for (var i = 0; i < 10; i++) {
+            svgrec[i] = document.createElement("rect");
+            txt[i] = document.createElement("text");
+            mysvg.appendChild(svgrec[i]);
+            mysvg.appendChild(txt[i]);
+            var h = Math.random() * 300;
+            svgrec[i].outerHTML = "<rect x=" + (i * x) + " y=" + (y - h) + " width=60 height=" + (h) + " style='fill:rgb(125,0," + Math.floor(h) + ")'/>";
+            txt[i].outerHTML = "<text x=" + (i * x + 20) + " y=" + (y - h) + " fill='blue'>" + Math.floor(h) + "</text>";
+        }
+    </script>
+</body>
+
+</html>

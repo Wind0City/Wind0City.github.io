@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+</head>
+
+<body>
+    <svg id="mySvg"></svg>
+    <script>
+        var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;//获取屏幕宽度
+        var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;//获取高度
+        var mysvg = document.getElementById("mySvg");//选择SVG
+        mysvg.setAttribute("width", w);
+        mysvg.setAttribute("height", h * 3);//设置宽高符合网页
+        var length = 300;//初始长度
+        rate = 0.8;//衰减系数
+        var x0 = w / 2 - 100;
+        var y0 = 0;//坐标
+        var count = 9;//层数
+        var iter = 0;
+        function show(x0, y0, length, rate, a, count) {//函数，上次画线的结束点，这次画线的长度，衰减系数，偏向角度，画树次数
+            var x1 = x0;
+            var y1 = y0;
+            var x2 = x1 + length * (0.5 + 0.5 * Math.random()) * Math.cos(a);//这里加了个随机//下次及角度随机,但是位置还是要承接上次的结束点
+            var y2 = y1 + length * (0.5 + 0.5 * Math.random()) * Math.sin(a);//这里也加了个随机
+            svgline = document.createElement("line");//引入元素
+            mysvg.appendChild(svgline);
+            iter++;//为了颜色渐变的效果
+            svgline.outerHTML = "<line x1=" + x1 + " y1=" + y1 + " x2=" + x2 + " y2=" + y2 + " style='stroke:rgb(200," + (18 + iter) + ",100);stroke-width:" + (count) + "' />";//画线的数据，颜色渐变
+            var aL = a - Math.PI / 4 * (0.6 + 0.5 * Math.random());//角度也是随机的
+            var aR = a + Math.PI / 4 * (0.6 + 0.5 * Math.random());
+            if (count > 0) {
+                show(x2, y2, length * rate, rate, aL, count - 1);//左树
+                show(x2, y2, length * rate, rate, aR, count - 1);//右树
+            }
+        }
+        show(x0, y0, length, rate, Math.PI / 2, count);
+    </script>
+    <title>Document</title>
+</body>
+
+</html>
