@@ -7,10 +7,16 @@
  * 3. 提供文章列表和文章详情的获取接口
  *
  * 注意：
- * - 使用 Vite 的 import.meta.glob 功能批量导入 .md 文件
- * - 使用 ?raw 后缀以获取文件的原始字符串内容
+ * - 使用静态导入 ?raw 方式导入 Markdown 文件
+ * - 确保在生产环境中正确加载
  */
 import { parseMarkdownFile, type ParsedArticle } from "@/utils/markdown";
+
+// 静态导入所有 Markdown 文件（使用 ?raw 获取原始字符串）
+import gettingStartedReact from "/src/posts/getting-started-with-react.md?raw";
+import cssFlexboxGuide from "/src/posts/css-flexbox-guide.md?raw";
+import typescriptTips from "/src/posts/typescript-tips.md?raw";
+import gitWorkflow from "/src/posts/git-workflow.md?raw";
 
 /**
  * 文章类型定义（重新导出，方便使用）
@@ -31,39 +37,31 @@ export interface Article {
 }
 
 /**
- * 使用 Vite 的 import.meta.glob 批量导入所有 Markdown 文件
+ * 文章数据映射表
  *
- * import.meta.glob 返回一个对象：
- * - key: 文件路径，如 "/src/posts/article.md"
- * - value: 文件内容字符串（使用 ?raw 后缀）
- *
- * eager: true 表示立即加载所有文件（不使用动态导入）
+ * key: 文章 ID（文件名）
+ * value: Markdown 文件原始内容
  */
-const markdownModules = import.meta.glob<string>("/src/posts/*.md?raw", {
-    eager: true,
-});
-
-// 开发环境下打印调试信息
-if (import.meta.env.DEV) {
-    console.log("Markdown modules found:", Object.keys(markdownModules));
-}
+const markdownFiles: Record<string, string> = {
+    "getting-started-with-react": gettingStartedReact,
+    "css-flexbox-guide": cssFlexboxGuide,
+    "typescript-tips": typescriptTips,
+    "git-workflow": gitWorkflow,
+};
 
 /**
  * 解析所有 Markdown 文件，生成文章数据数组
- *
- * 遍历导入的文件，解析每个文件的 frontmatter 和内容
  */
-const articles: ParsedArticle[] = Object.entries(markdownModules)
-    .filter(([path]) => !path.endsWith("README.md")) // 排除 README.md
-    .map(([path, content]) => {
-        // 从文件路径提取文件名作为 ID
-        // 例如：/src/posts/getting-started-with-react.md?raw -> getting-started-with-react
-        const fileName = path.split("/").pop()?.replace("?raw", "") || "";
-        const id = fileName.replace(".md", "");
-
-        // 解析 Markdown 文件
+const articles: ParsedArticle[] = Object.entries(markdownFiles).map(
+    ([id, content]) => {
         return parseMarkdownFile(id, content);
-    });
+    }
+);
+
+// 开发环境下打印调试信息
+if (import.meta.env.DEV) {
+    console.log("Articles loaded:", articles.length);
+}
 
 /**
  * 获取所有文章列表（不含内容）

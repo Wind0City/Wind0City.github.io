@@ -12,11 +12,13 @@ function App() {
                 muted
                 loop
                 playsInline
+                preload="auto"
             >
                 <source
                     src="/149E7795-DBDA-4F5D-B39A-14712F841118.mp4"
                     type="video/mp4"
                 />
+                您的浏览器不支持视频播放
             </video>
             <div className="relative z-10">
                 <RouterProvider router={router} />
