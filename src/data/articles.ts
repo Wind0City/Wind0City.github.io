@@ -8,46 +8,9 @@
  *
  * 注意：
  * - 使用 Vite 的 import.meta.glob 功能批量导入 .md 文件
- * - 添加 ?raw 后缀以获取文件的原始字符串内容
+ * - 使用 ?raw 后缀以获取文件的原始字符串内容
  */
 import { parseMarkdownFile, type ParsedArticle } from "@/utils/markdown";
-
-/**
- * 使用 Vite 的 import.meta.glob 批量导入所有 Markdown 文件
- *
- * import.meta.glob 返回一个对象：
- * - key: 文件路径，如 "/src/posts/article.md"
- * - value: 导入函数，调用后返回文件内容
- *
- * eager: true 表示立即加载所有文件（不使用动态导入）
- * as: 'raw' 表示获取文件的原始字符串内容
- */
-const markdownModules = import.meta.glob<{ default: string }>("/src/posts/*.md", {
-    eager: true,
-    as: "raw",
-});
-
-// 开发环境下打印调试信息
-if (import.meta.env.DEV) {
-    console.log("Markdown modules found:", Object.keys(markdownModules));
-}
-
-/**
- * 解析所有 Markdown 文件，生成文章数据数组
- *
- * 遍历导入的文件，解析每个文件的 frontmatter 和内容
- */
-const articles: ParsedArticle[] = Object.entries(markdownModules).map(
-    ([path, content]) => {
-        // 从文件路径提取文件名作为 ID
-        // 例如：/src/posts/getting-started-with-react.md -> getting-started-with-react
-        const fileName = path.split("/").pop() || "";
-        const id = fileName.replace(".md", "");
-
-        // 解析 Markdown 文件
-        return parseMarkdownFile(id, content as unknown as string);
-    },
-);
 
 /**
  * 文章类型定义（重新导出，方便使用）
@@ -66,6 +29,41 @@ export interface Article {
     /** Markdown 正文内容 */
     content: string;
 }
+
+/**
+ * 使用 Vite 的 import.meta.glob 批量导入所有 Markdown 文件
+ *
+ * import.meta.glob 返回一个对象：
+ * - key: 文件路径，如 "/src/posts/article.md"
+ * - value: 文件内容字符串（使用 ?raw 后缀）
+ *
+ * eager: true 表示立即加载所有文件（不使用动态导入）
+ */
+const markdownModules = import.meta.glob<string>("/src/posts/*.md?raw", {
+    eager: true,
+});
+
+// 开发环境下打印调试信息
+if (import.meta.env.DEV) {
+    console.log("Markdown modules found:", Object.keys(markdownModules));
+}
+
+/**
+ * 解析所有 Markdown 文件，生成文章数据数组
+ *
+ * 遍历导入的文件，解析每个文件的 frontmatter 和内容
+ */
+const articles: ParsedArticle[] = Object.entries(markdownModules)
+    .filter(([path]) => !path.endsWith("README.md")) // 排除 README.md
+    .map(([path, content]) => {
+        // 从文件路径提取文件名作为 ID
+        // 例如：/src/posts/getting-started-with-react.md?raw -> getting-started-with-react
+        const fileName = path.split("/").pop()?.replace("?raw", "") || "";
+        const id = fileName.replace(".md", "");
+
+        // 解析 Markdown 文件
+        return parseMarkdownFile(id, content);
+    });
 
 /**
  * 获取所有文章列表（不含内容）
