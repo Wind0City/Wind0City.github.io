@@ -50,7 +50,7 @@ export const Layout = ({ children }: LayoutProps) => {
                 >
                     {/* 导航栏 - 宽度与下方卡片一致 */}
                     <nav
-                        className="p-2 flex justify-start gap-4 bg-black/10 backdrop-blur-none border-3 border-white/60 rounded-4xl flex-shrink-0"
+                        className="p-2 flex justify-start gap-4 bg-black/1 backdrop-blur-sm border-3 border-white/60 rounded-4xl flex-shrink-0"
                     >
                         <Link
                             to="/"
