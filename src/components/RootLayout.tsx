@@ -56,7 +56,7 @@ export const RootLayout = () => {
                             </motion.div>
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                                 <Link
-                                    to="/test"
+                                    to="/article"
                                     className="px-4 py-2 backdrop-blur bg-white/1 border-2 border-white/60 rounded-full text-lg font-medium text-white hover:bg-white/30 transition"
                                 >
                                     Article
