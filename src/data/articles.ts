@@ -58,11 +58,6 @@ const articles: ParsedArticle[] = Object.entries(markdownFiles).map(
     }
 );
 
-// 开发环境下打印调试信息
-if (import.meta.env.DEV) {
-    console.log("Articles loaded:", articles.length);
-}
-
 /**
  * 获取所有文章列表（不含内容）
  *
