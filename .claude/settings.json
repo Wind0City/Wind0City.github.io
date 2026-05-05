@@ -7,7 +7,14 @@
       "Bash(git push *)",
       "Bash(npm run *)",
       "Bash(git commit *)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(grep -E \"\\\\.\\(js|css\\)$\")",
+      "Bash(npx eslint *)",
+      "Bash(git -C /Users/windcity/Downloads/JS/kanban status)",
+      "Bash(git -C /Users/windcity/Downloads/JS/kanban diff)",
+      "Bash(git -C /Users/windcity/Downloads/JS/kanban log --oneline -5)",
+      "Bash(git -C /Users/windcity/Downloads/JS/kanban add src/hooks/useStatus.ts src/contexts/StatusContext.tsx src/components/StatusCard/index.tsx src/components/StatusDetail/index.tsx src/pages/Home/index.tsx eslint.config.js)",
+      "Bash(git -C /Users/windcity/Downloads/JS/kanban commit -m ' *)"
     ]
   }
 }
