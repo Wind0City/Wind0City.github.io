@@ -9,7 +9,6 @@
 import { createBrowserRouter } from "react-router";
 
 // 导入页面组件
-import { BoardPage } from "../pages/Borad";
 import { HomePage } from "@/pages/Home";
 import { ProfilePage } from "@/pages/Profile";
 import { TestPage } from "@/pages/Test";
@@ -27,11 +26,6 @@ const routes = [
         // 首页
         path: "/",
         element: <HomePage />,
-    },
-    {
-        // 看板页面
-        path: "/Board",
-        element: <BoardPage />,
     },
     {
         // 个人简介页面

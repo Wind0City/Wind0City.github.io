@@ -1,12 +1,15 @@
-import { AnimatedCard } from "@/components/AnimatedCard";
+import { StatusDetail } from "@/components/StatusDetail";
+import { WindCityDisplay } from "@/components/WindCityDisplay";
 import { Layout } from "@/components/Layout";
+import { useStatus } from "@/contexts/StatusContext";
 
 export const HomePage = () => {
+    const { selectedStatus } = useStatus();
+
     return (
         <Layout>
-            <AnimatedCard duration={1000}>
-                <h1 className="text-4xl font-bold text-white mb-4">WindCity</h1>
-            </AnimatedCard>
+            <WindCityDisplay show={!selectedStatus} />
+            <StatusDetail />
         </Layout>
     );
 };

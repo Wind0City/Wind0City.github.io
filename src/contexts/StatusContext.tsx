@@ -1,0 +1,146 @@
+import {
+    createContext,
+    useContext,
+    useState,
+    type ReactNode,
+} from "react";
+
+export interface StatusItem {
+    id: string;
+    date: string;
+    time: string;
+    content: string;
+    detail?: string;
+}
+
+const statusData: StatusItem[] = [
+    {
+        id: "1",
+        date: "2026.4.29",
+        time: "10:30",
+        content: "优化博客主界面设计",
+        detail:
+            "今天完成了主界面的重新设计，添加了状态栏联动功能，让用户可以点击状态查看详细信息。使用了渐进式动画效果，提升了用户体验。",
+    },
+    {
+        id: "2",
+        date: "2026.4.23",
+        time: "16:38",
+        content: "依旧沉迷于装饰 blog",
+        detail:
+            "花了一整天调整样式，研究 Tailwind CSS 4 的新特性，尝试各种玻璃态效果。",
+    },
+    {
+        id: "3",
+        date: "2026.4.23",
+        time: "14:20",
+        content: "学习 React Router 7 的新特性",
+        detail:
+            "React Router 7 带来了很多改进，包括更好的类型支持和新的 API。正在逐步迁移项目。",
+    },
+    {
+        id: "4",
+        date: "2026.4.22",
+        time: "22:15",
+        content: "终于把文章分类功能做完了 🎉",
+        detail:
+            "文章分类功能终于完成了！支持按标签筛选，搜索功能也加上了。虽然花了不少时间，但效果很满意。",
+    },
+    {
+        id: "5",
+        date: "2026.4.22",
+        time: "18:30",
+        content: "调试 Markdown 渲染样式",
+        detail: "调整代码块、表格、引用等元素的样式，让文章阅读体验更好。",
+    },
+    {
+        id: "6",
+        date: "2026.4.21",
+        time: "20:00",
+        content: "开始搭建个人博客系统",
+        detail:
+            "决定用 React + Vite + Tailwind 搭建自己的博客，记录学习和生活。选择这套技术栈是因为开发体验好，构建速度快。",
+    },
+    {
+        id: "7",
+        date: "2026.4.20",
+        time: "15:45",
+        content: "研究 Tailwind CSS 4 的新语法",
+        detail:
+            "Tailwind CSS 4 带来了全新的配置方式，使用 CSS 变量和 @theme 指令，让主题定制更加灵活。",
+    },
+    {
+        id: "8",
+        date: "2026.4.19",
+        time: "21:30",
+        content: "尝试用 Vite 替换 Webpack",
+        detail:
+            "Vite 的开发服务器启动速度真的很快，HMR 也几乎即时。迁移过程比想象中顺利。",
+    },
+    {
+        id: "9",
+        date: "2026.4.18",
+        time: "10:15",
+        content: "阅读 TypeScript 高级类型文档",
+        detail:
+            "深入学习了条件类型、映射类型和模板字面量类型，TypeScript 的类型系统真的很强大。",
+    },
+    {
+        id: "10",
+        date: "2026.4.17",
+        time: "19:00",
+        content: "配置 ESLint 和 Prettier",
+        detail:
+            "统一了代码风格，配置了保存自动格式化。团队协作必备，避免代码风格争议。",
+    },
+    {
+        id: "11",
+        date: "2026.4.16",
+        time: "16:20",
+        content: "初始化项目结构 🚀",
+        detail:
+            "创建了基础的 React 项目结构，配置了 TypeScript 和 Vite。一切从零开始，充满期待！",
+    },
+];
+
+interface StatusContextType {
+    statuses: StatusItem[];
+    selectedStatus: StatusItem | null;
+    selectStatus: (status: StatusItem | null) => void;
+    latestStatus: StatusItem | null;
+}
+
+const StatusContext = createContext<StatusContextType | undefined>(undefined);
+
+export const StatusProvider = ({ children }: { children: ReactNode }) => {
+    const [selectedStatus, setSelectedStatus] = useState<StatusItem | null>(
+        null,
+    );
+
+    const selectStatus = (status: StatusItem | null) => {
+        setSelectedStatus(status);
+    };
+
+    const latestStatus = statusData.length > 0 ? statusData[0] : null;
+
+    return (
+        <StatusContext.Provider
+            value={{
+                statuses: statusData,
+                selectedStatus,
+                selectStatus,
+                latestStatus,
+            }}
+        >
+            {children}
+        </StatusContext.Provider>
+    );
+};
+
+export const useStatus = (): StatusContextType => {
+    const context = useContext(StatusContext);
+    if (!context) {
+        throw new Error("useStatus must be used within a StatusProvider");
+    }
+    return context;
+};
