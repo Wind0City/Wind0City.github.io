@@ -31,6 +31,9 @@
 - **tailwind-merge** - Tailwind 类名合并
 - **class-variance-authority (CVA)** - 组件变体管理
 
+### 动画库
+- **Framer Motion 12** - React 动画库，用于实现流畅的交互动画和页面过渡
+
 ---
 
 ## 项目结构
@@ -294,6 +297,44 @@ const buttonVariants = cva(
     }
 );
 ```
+
+### 11. Framer Motion 动画
+
+```tsx
+import { motion, AnimatePresence } from "framer-motion";
+
+// 基础动画
+<motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.3 }}
+/>
+
+// 悬停和点击效果
+<motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+/>
+
+// 交错动画
+<motion.div
+    variants={staggerContainer}
+    initial="initial"
+    animate="animate"
+>
+    {items.map((item) => (
+        <motion.div key={item.id} variants={listItem} />
+    ))}
+</motion.div>
+```
+
+**关键点：**
+- `motion` 组件替代原生 HTML 元素
+- `AnimatePresence` 管理组件进入/退出
+- `whileHover` / `whileTap` 实现交互效果
+- `variants` 定义动画变体
+- `layoutId` 实现共享布局动画
 
 ---
 
