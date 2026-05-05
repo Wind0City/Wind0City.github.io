@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 
 interface TOCItem {
     id: string;
@@ -53,12 +53,12 @@ export const TableOfContents = ({ content }: TableOfContentsProps) => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const scrollToHeading = (id: string) => {
+    const scrollToHeading = useCallback((id: string) => {
         const element = document.getElementById(id);
         if (element) {
             element.scrollIntoView({ behavior: "smooth" });
         }
-    };
+    }, []);
 
     if (headings.length === 0) return null;
 
