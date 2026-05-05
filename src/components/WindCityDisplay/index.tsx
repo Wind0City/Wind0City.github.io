@@ -8,12 +8,16 @@ export const WindCityDisplay = ({ show }: WindCityDisplayProps) => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        if (show) {
-            const timer = setTimeout(() => setIsVisible(true), 100);
-            return () => clearTimeout(timer);
-        } else {
-            setIsVisible(false);
+        // 只在 show 为 true 时启动定时器
+        if (!show) {
+            return;
         }
+
+        const timer = setTimeout(() => setIsVisible(true), 100);
+        return () => {
+            clearTimeout(timer);
+            setIsVisible(false);
+        };
     }, [show]);
 
     if (!show) return null;
