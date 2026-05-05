@@ -26,3 +26,5 @@ export const TestPage = () => {
         </AnimatedCard>
     );
 };
+
+export default TestPage;

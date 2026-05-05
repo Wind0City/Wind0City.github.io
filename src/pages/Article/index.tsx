@@ -22,3 +22,5 @@ export const ArticlePage = () => {
         </AnimatedCard>
     );
 };
+
+export default ArticlePage;

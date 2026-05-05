@@ -17,3 +17,5 @@ export const ProfilePage = () => {
         </AnimatedCard>
     );
 };
+
+export default ProfilePage;

@@ -29,4 +29,10 @@ export default defineConfig([
             "react-refresh/only-export-components": "off",
         },
     },
+    {
+        files: ["**/router/**/*.{ts,tsx}"],
+        rules: {
+            "react-refresh/only-export-components": "off",
+        },
+    },
 ]);
