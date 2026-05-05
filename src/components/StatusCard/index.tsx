@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useStatus } from "@/contexts/StatusContext";
-import { hoverScale, tapScale, fadeIn } from "@/lib/animations";
 
 export const StatusCard = () => {
     const { statuses, selectedStatus, selectStatus } = useStatus();
