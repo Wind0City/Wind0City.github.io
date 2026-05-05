@@ -3,10 +3,11 @@
  *
  * 功能：
  * 1. 作为文章详情的路由页面
- * 2. 包裹 ArticleDetail 组件，提供统一的布局和动画效果
+ * 2. 包裹 ArticleDetail 组件，提供统一的动画效果
+ *
+ * 不包含 Layout，因为 Layout 已经在根路由层级
  */
 import { AnimatedCard } from "@/components/AnimatedCard";
-import { Layout } from "@/components/Layout";
 import { ArticleDetail } from "@/components/Article";
 
 /**
@@ -16,12 +17,8 @@ import { ArticleDetail } from "@/components/Article";
  */
 export const ArticlePage = () => {
     return (
-        <Layout>
-            {/* 动画卡片容器 */}
-            <AnimatedCard duration={600}>
-                {/* 文章详情组件 */}
-                <ArticleDetail />
-            </AnimatedCard>
-        </Layout>
+        <AnimatedCard duration={600}>
+            <ArticleDetail />
+        </AnimatedCard>
     );
 };

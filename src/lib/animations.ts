@@ -106,7 +106,7 @@ export const hoverScale = {
     transition: {
         type: "spring" as const,
         stiffness: 400,
-        damping: 17,
+        damping: 10,
     },
 };
 

@@ -5,9 +5,10 @@
  * 1. 作为文章列表的入口页面
  * 2. 展示所有文章的摘要信息
  * 3. 点击文章可跳转到详情页
+ *
+ * 不包含 Layout，因为 Layout 已经在根路由层级
  */
 import { AnimatedCard } from "@/components/AnimatedCard";
-import { Layout } from "@/components/Layout";
 import { ArticleList, getArticleList } from "@/components/Article";
 
 /**
@@ -20,12 +21,8 @@ export const TestPage = () => {
     const articles = getArticleList();
 
     return (
-        <Layout>
-            {/* 动画卡片容器 */}
-            <AnimatedCard duration={600}>
-                {/* 文章列表组件 */}
-                <ArticleList articles={articles} />
-            </AnimatedCard>
-        </Layout>
+        <AnimatedCard duration={600}>
+            <ArticleList articles={articles} />
+        </AnimatedCard>
     );
 };
