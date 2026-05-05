@@ -1,4 +1,4 @@
-import { Outlet } from "react-router";
+import { Outlet, Link } from "react-router";
 import { motion } from "framer-motion";
 import { StatusCard } from "@/components/StatusCard";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -47,20 +47,20 @@ export const RootLayout = () => {
                     >
                         <div className="flex gap-4">
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                <a
-                                    href="/"
+                                <Link
+                                    to="/"
                                     className="px-4 py-2 backdrop-blur bg-white/1 border-2 border-white/60 rounded-full text-lg font-medium text-white hover:bg-white/30 transition"
                                 >
                                     Home
-                                </a>
+                                </Link>
                             </motion.div>
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                <a
-                                    href="/test"
+                                <Link
+                                    to="/test"
                                     className="px-4 py-2 backdrop-blur bg-white/1 border-2 border-white/60 rounded-full text-lg font-medium text-white hover:bg-white/30 transition"
                                 >
                                     Article
-                                </a>
+                                </Link>
                             </motion.div>
                         </div>
 
