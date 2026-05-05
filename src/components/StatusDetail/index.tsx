@@ -20,12 +20,12 @@ export const StatusDetail = () => {
                         animate={{ x: 0, opacity: 1, scale: 1 }}
                         exit={{ x: -200, opacity: 0, scale: 0.9 }}
                         transition={spring}
-                        className="max-w-2xl w-full bg-black/30 backdrop-blur-xl rounded-3xl border border-white/40 p-8 relative"
+                        className="max-w-2xl w-full bg-black/5 backdrop-blur-xl rounded-4xl border-3 border-white/80 p-8 relative"
                     >
                         {/* 关闭按钮 */}
                         <motion.button
                             onClick={handleClose}
-                            className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                            className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/20 transition-colors"
                             whileHover={{ scale: 1.1, rotate: 90 }}
                             whileTap={{ scale: 0.9 }}
                             transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -38,7 +38,7 @@ export const StatusDetail = () => {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="text-white/50 text-sm mb-4"
+                            className="text-white/80 text-sm mb-4"
                         >
                             {selectedStatus.date} · {selectedStatus.time}
                         </motion.div>

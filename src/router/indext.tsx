@@ -54,7 +54,7 @@ const routes = [
             },
             {
                 // 测试页面（文章列表）
-                path: "/test",
+                path: "/article",
                 element: (
                     <Suspense fallback={<PageLoader />}>
                         <TestPage />

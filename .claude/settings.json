@@ -14,7 +14,11 @@
       "Bash(git -C /Users/windcity/Downloads/JS/kanban diff)",
       "Bash(git -C /Users/windcity/Downloads/JS/kanban log --oneline -5)",
       "Bash(git -C /Users/windcity/Downloads/JS/kanban add src/hooks/useStatus.ts src/contexts/StatusContext.tsx src/components/StatusCard/index.tsx src/components/StatusDetail/index.tsx src/pages/Home/index.tsx eslint.config.js)",
-      "Bash(git -C /Users/windcity/Downloads/JS/kanban commit -m ' *)"
+      "Bash(git -C /Users/windcity/Downloads/JS/kanban commit -m ' *)",
+      "Bash(awk '{print $9, $5}')",
+      "Bash(sort -k2 -h)",
+      "Bash(depcheck /Users/windcity/Downloads/JS/kanban --json)",
+      "Bash(npm uninstall *)"
     ]
   }
 }
