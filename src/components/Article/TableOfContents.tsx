@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 interface TOCItem {
     id: string;
@@ -11,11 +11,10 @@ interface TableOfContentsProps {
 }
 
 export const TableOfContents = ({ content }: TableOfContentsProps) => {
-    const [headings, setHeadings] = useState<TOCItem[]>([]);
     const [activeId, setActiveId] = useState<string>("");
 
-    useEffect(() => {
-        // 从 Markdown 内容中提取标题
+    // 使用 useMemo 计算标题列表，避免 useEffect 中的 setState
+    const headings = useMemo(() => {
         const lines = content.split("\n");
         const items: TOCItem[] = [];
 
@@ -29,7 +28,7 @@ export const TableOfContents = ({ content }: TableOfContentsProps) => {
             }
         });
 
-        setHeadings(items);
+        return items;
     }, [content]);
 
     useEffect(() => {
