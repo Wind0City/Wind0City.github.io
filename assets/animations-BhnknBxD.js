@@ -1,0 +1,1 @@
+var e={type:`spring`,stiffness:300,damping:30},t={animate:{transition:{staggerChildren:.1}}},n={initial:{opacity:0,y:20},animate:{opacity:1,y:0},exit:{opacity:0,y:-20}};export{e as n,t as r,n as t};
