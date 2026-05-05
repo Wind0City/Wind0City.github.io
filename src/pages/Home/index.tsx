@@ -1,6 +1,6 @@
 import { StatusDetail } from "@/components/StatusDetail";
 import { WindCityDisplay } from "@/components/WindCityDisplay";
-import { useStatus } from "@/contexts/StatusContext";
+import { useStatus } from "@/hooks/useStatus";
 
 /**
  * 首页组件

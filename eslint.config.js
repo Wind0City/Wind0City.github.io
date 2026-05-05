@@ -23,4 +23,10 @@ export default defineConfig([
             globals: globals.browser,
         },
     },
+    {
+        files: ["**/contexts/**/*.{ts,tsx}"],
+        rules: {
+            "react-refresh/only-export-components": "off",
+        },
+    },
 ]);

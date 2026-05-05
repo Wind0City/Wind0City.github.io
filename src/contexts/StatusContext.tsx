@@ -1,6 +1,5 @@
 import {
     createContext,
-    useContext,
     useState,
     type ReactNode,
 } from "react";
@@ -110,7 +109,7 @@ interface StatusContextType {
     latestStatus: StatusItem | null;
 }
 
-const StatusContext = createContext<StatusContextType | undefined>(undefined);
+export const StatusContext = createContext<StatusContextType | undefined>(undefined);
 
 export const StatusProvider = ({ children }: { children: ReactNode }) => {
     const [selectedStatus, setSelectedStatus] = useState<StatusItem | null>(
@@ -135,12 +134,4 @@ export const StatusProvider = ({ children }: { children: ReactNode }) => {
             {children}
         </StatusContext.Provider>
     );
-};
-
-export const useStatus = (): StatusContextType => {
-    const context = useContext(StatusContext);
-    if (!context) {
-        throw new Error("useStatus must be used within a StatusProvider");
-    }
-    return context;
 };

@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useStatus } from "@/contexts/StatusContext";
+import { useStatus } from "@/hooks/useStatus";
 import { X } from "lucide-react";
 import { spring } from "@/lib/animations";
 
