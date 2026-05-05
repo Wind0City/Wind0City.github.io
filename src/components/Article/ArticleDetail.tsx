@@ -8,13 +8,17 @@
  * 4. 内容左对齐，按照 Markdown 格式显示
  * 5. 阅读增强：进度条、阅读时间、目录导航
  */
+import { lazy, Suspense } from "react";
 import { useNavigate, useParams } from "react-router";
-import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getArticleById } from "@/data/articles";
 import { ReadingProgress } from "./ReadingProgress";
 import { ReadingTime } from "./ReadingTime";
 import { TableOfContents } from "./TableOfContents";
+import { SkeletonLoader } from "@/components/ui/SkeletonLoader";
+
+// 懒加载 Markdown 渲染器
+const ReactMarkdown = lazy(() => import("react-markdown"));
 
 /**
  * 文章详情组件
@@ -110,7 +114,17 @@ export const ArticleDetail = () => {
                          *
                          * 内容左对齐，按照标准 Markdown 文档格式显示
                          */}
-                        <ReactMarkdown
+                        <Suspense
+                            fallback={
+                                <div className="space-y-4">
+                                    <SkeletonLoader variant="text" height="1.5rem" width="60%" />
+                                    <SkeletonLoader variant="text" height="1rem" />
+                                    <SkeletonLoader variant="text" height="1rem" />
+                                    <SkeletonLoader variant="text" height="1rem" width="80%" />
+                                </div>
+                            }
+                        >
+                            <ReactMarkdown
                             remarkPlugins={[remarkGfm]}
                             components={{
                                 // 自定义代码块样式
@@ -244,6 +258,7 @@ export const ArticleDetail = () => {
                         >
                             {article.content}
                         </ReactMarkdown>
+                        </Suspense>
                     </article>
                 </div>
             </div>
