@@ -39,7 +39,7 @@ export const ArticleDetail = () => {
      * 处理返回按钮点击事件
      */
     const handleBack = () => {
-        navigate("/test");
+        navigate("/article");
     };
 
     // 文章不存在时显示错误提示

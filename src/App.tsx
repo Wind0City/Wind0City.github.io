@@ -11,7 +11,7 @@ function App() {
                 <div
                     className="fixed inset-0 w-full h-full bg-cover bg-center bg-no-repeat pointer-events-none transition-opacity duration-300"
                     style={{
-                        backgroundImage: "url(/background.png)",
+                        backgroundImage: "url(/background.jpg)",
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                     }}

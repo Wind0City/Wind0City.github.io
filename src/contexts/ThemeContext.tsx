@@ -27,12 +27,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
             if (saved === "light" || saved === "dark") {
                 return saved;
             }
-            // 跟随系统偏好
-            if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-                return "dark";
-            }
         }
-        return "light";
+        // 默认使用暗色主题
+        return "dark";
     });
 
     useEffect(() => {
@@ -50,11 +47,12 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     // 监听系统主题变化
     useEffect(() => {
         const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-        const handleChange = (e: MediaQueryListEvent) => {
+        const handleChange = () => {
             const saved = localStorage.getItem("theme");
             // 只有用户没有手动设置主题时才跟随系统
             if (!saved) {
-                setThemeState(e.matches ? "dark" : "light");
+                // 默认暗色，不跟随系统变化
+                setThemeState("dark");
             }
         };
 

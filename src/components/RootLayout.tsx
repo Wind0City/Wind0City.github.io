@@ -43,13 +43,13 @@ export const RootLayout = () => {
                         initial={{ y: -50, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.2, type: "spring", stiffness: 300, damping: 30 }}
-                        className="p-2 flex justify-between items-center bg-black/1 backdrop-blur-sm border-3 border-white/60 rounded-4xl flex-shrink-0"
+                        className="p-2 flex justify-between items-center bg-transparent hover:bg-black/20 hover:backdrop-blur-md border-3 border-white/60 rounded-4xl flex-shrink-0 transition-all duration-300"
                     >
                         <div className="flex gap-4">
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                                 <Link
                                     to="/"
-                                    className="px-4 py-2 backdrop-blur bg-white/1 border-2 border-white/60 rounded-full text-lg font-medium text-white hover:bg-white/30 transition"
+                                    className="px-4 py-2 bg-transparent hover:bg-black/20 hover:backdrop-blur-sm border-2 border-white/60 rounded-full text-lg font-medium text-white hover:border-white/80 transition-all duration-300"
                                 >
                                     Home
                                 </Link>
@@ -57,7 +57,7 @@ export const RootLayout = () => {
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                                 <Link
                                     to="/article"
-                                    className="px-4 py-2 backdrop-blur bg-white/1 border-2 border-white/60 rounded-full text-lg font-medium text-white hover:bg-white/30 transition"
+                                    className="px-4 py-2 bg-transparent hover:bg-black/20 hover:backdrop-blur-sm border-2 border-white/60 rounded-full text-lg font-medium text-white hover:border-white/80 transition-all duration-300"
                                 >
                                     Article
                                 </Link>

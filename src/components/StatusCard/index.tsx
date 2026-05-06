@@ -5,9 +5,9 @@ export const StatusCard = () => {
     const { statuses, selectedStatus, selectStatus } = useStatus();
 
     return (
-        <div className="w-full h-full bg-black/20 backdrop-blur-md rounded-4xl border border-white/80 flex flex-col overflow-hidden relative">
+        <div className="w-full h-full bg-transparent hover:bg-black/20 hover:backdrop-blur-md rounded-4xl border border-white/80 flex flex-col overflow-hidden relative transition-all duration-300 group">
             {/* 标题 */}
-            <h2 className="absolute top-0 left-0 right-0 z-10 rounded-3xl text-lg font-bold text-white text-center p-3 border-b-2 border-white/80 m-0 bg-white/20 backdrop-blur-xl">
+            <h2 className="absolute top-0 left-0 right-0 z-10 rounded-3xl text-lg font-bold text-white text-center p-3 border-b-2 border-white/80 m-0 bg-transparent group-hover:bg-black/20 group-hover:backdrop-blur-xl transition-all duration-300">
                 Status
             </h2>
 
@@ -47,10 +47,10 @@ export const StatusCard = () => {
                                     {/* 状态内容卡片 */}
                                     <motion.button
                                         onClick={() => selectStatus(status)}
-                                        className={`w-full text-left bg-black/20 rounded-lg p-3 border transition-all duration-300 ${
+                                        className={`w-full text-left bg-transparent hover:bg-black/20 hover:backdrop-blur-sm rounded-lg p-3 border transition-all duration-300 ${
                                             selectedStatus?.id === status.id
                                                 ? "border-fuchsia-400/50 bg-fuchsia-500/10"
-                                                : "border-white/10 hover:border-white/30 hover:bg-white/5"
+                                                : "border-white/10 hover:border-white/30"
                                         }`}
                                         whileHover={{ scale: 1.02, x: 4 }}
                                         whileTap={{ scale: 0.98 }}

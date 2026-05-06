@@ -82,6 +82,7 @@ export const pageTransition = {
  * 列表项交错动画配置
  */
 export const staggerContainer = {
+    initial: {},
     animate: {
         transition: {
             staggerChildren: 0.1,
