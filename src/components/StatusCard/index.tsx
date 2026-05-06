@@ -23,10 +23,14 @@ export const StatusCard = () => {
                             {statuses.map((status, index) => (
                                 <motion.div
                                     key={status.id}
-                                    initial={{ opacity: 0, y: -30 }}
+                                    initial={{ opacity: 0, y: -50 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -30 }}
-                                    transition={{ delay: index * 0.05, type: "spring", stiffness: 300, damping: 25 }}
+                                    exit={{ opacity: 0, y: -50 }}
+                                    transition={{
+                                        delay: index * 0.15,
+                                        duration: 0.6,
+                                        ease: "easeOut"
+                                    }}
                                     className="relative pl-6"
                                 >
                                     {/* 时间轴圆点 */}
