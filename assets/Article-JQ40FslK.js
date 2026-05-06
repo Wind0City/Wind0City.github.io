@@ -1,1 +1,0 @@
-import{r as e}from"./vendor-markdown-a2d9Fo5F.js";import{t}from"./AnimatedCard-Bf3zUXNi.js";import{t as n}from"./Article-C-2J9ZsJ.js";var r=e(),i=()=>(0,r.jsx)(t,{duration:600,children:(0,r.jsx)(n,{})});export{i as ArticlePage,i as default};
